@@ -1,0 +1,23 @@
+{
+  "name": "desafio-sync360",
+  "version": "1.0.0",
+  "description": "Projeto desafio Sync360 - executa backend e frontend juntos",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnny0300/desafio-sync360.git"
+  },
+  "keywords": [],
+  "author": "Johnny Ferreira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnny0300/desafio-sync360/issues"
+  },
+  "homepage": "https://github.com/johnny0300/desafio-sync360#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
+}
