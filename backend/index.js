@@ -16,3 +16,14 @@ app.use('/usuario', usuarioRoutes);
 app.listen(PORT, () => {
   console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+
+//Conexão com Nuvem e DB Online para criação de perfil próprio
+require('dotenv').config();
+
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+});
+
