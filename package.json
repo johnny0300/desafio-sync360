@@ -19,5 +19,9 @@
   "homepage": "https://github.com/johnny0300/desafio-sync360#readme",
   "devDependencies": {
     "concurrently": "^9.2.0"
+  },
+  "dependencies": {
+    "cidades-estados-brasil-json": "^1.0.1",
+    "react-input-mask": "^2.0.4"
   }
 }

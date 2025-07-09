@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="pagina">
-      {!usuario ? (
+        {!usuario ? (
         <p>Carregando...</p>
       ) : modoEdicao ? (
         <ProfileForm 
@@ -40,7 +40,7 @@ function App() {
       ) : (
         <>
           <ProfileView dados={usuario} />
-          <button onClick={handleEditar}>Editar Perfil</button>
+          <button className="button-edit" onClick={handleEditar}>Editar Perfil</button>
         </>
       )}
     </div>
