@@ -5,7 +5,13 @@ export default function ProfileView({ dados }) {
 
   return (
     <div className="perfil">
-      <img src={dados.imagem_url} alt="Imagem de perfil" className="imagem-perfil" />
+      <img
+      src={dados.imagem_url}
+      alt="Imagem de perfil"
+      className="imagem-perfil"
+      onError={(e) => e.target.src = '/default.jpg'} // ou um link qualquer
+      />
+
       
       <h2 className="nome-perfil">{dados.nome}</h2>
       <p className="idade-perfil">{dados.idade} anos</p>

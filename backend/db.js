@@ -1,10 +1,12 @@
+require('dotenv').config();
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',        // altere aqui se seu usuário for diferente
-  password: 'anamaezona04',        // sua senha do MySQL
-  database: 'desafio_sync360'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+  database: process.env.DB_DATABASE
 });
 
 connection.connect((err) => {

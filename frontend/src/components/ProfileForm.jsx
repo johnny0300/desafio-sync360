@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function ProfileForm() {
+export default function ProfileForm({ dadosIniciais, onSalvo, onCancelar }) {
   const [form, setForm] = useState({
     nome: '',
     idade: '',
@@ -13,11 +13,10 @@ export default function ProfileForm() {
   });
 
   useEffect(() => {
-    fetch('http://localhost:3001/usuario')
-      .then(res => res.json())
-      .then(data => setForm(data))
-      .catch(err => console.error("Erro ao buscar usuário:", err));
-  }, []);
+    if (dadosIniciais) {
+      setForm(dadosIniciais);
+    }
+  }, [dadosIniciais]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -31,39 +30,43 @@ export default function ProfileForm() {
       body: JSON.stringify(form)
     })
       .then(res => res.text())
-      .then(msg => alert(msg))
+      .then(msg => {
+        alert(msg);
+        onSalvo(); // <- volta pra visualização
+      })
       .catch(err => console.error("Erro ao salvar:", err));
   };
 
   return (
     <form onSubmit={handleSubmit} className="form">
-      <h2 className="titulo">Editar Perfil</h2>
+      <h2>Editar Perfil</h2>
 
-      <label className="label" htmlFor="imagem_url">Imagem (URL)</label>
-      <input className="input-imagem" type="text" name="imagem_url" value={form.imagem_url} onChange={handleChange} />
+      <label>Imagem (URL)</label>
+      <input type="text" name="imagem_url" value={form.imagem_url} onChange={handleChange} />
 
-      <label className="label" htmlFor="nome">Nome completo</label>
-      <input className="input-nome" type="text" name="nome" value={form.nome} onChange={handleChange} />
+      <label>Nome</label>
+      <input type="text" name="nome" value={form.nome} onChange={handleChange} />
 
-      <label className="label" htmlFor="idade">Idade</label>
-      <input className="input-idade" type="number" name="idade" value={form.idade} onChange={handleChange} />
+      <label>Idade</label>
+      <input type="number" name="idade" value={form.idade} onChange={handleChange} />
 
-      <label className="label" htmlFor="rua">Rua</label>
-      <input className="input-rua" type="text" name="rua" value={form.rua} onChange={handleChange} />
+      <label>Rua</label>
+      <input type="text" name="rua" value={form.rua} onChange={handleChange} />
 
-      <label className="label" htmlFor="bairro">Bairro</label>
-      <input className="input-bairro" type="text" name="bairro" value={form.bairro} onChange={handleChange} />
+      <label>Bairro</label>
+      <input type="text" name="bairro" value={form.bairro} onChange={handleChange} />
 
-      <label className="label" htmlFor="estado">Estado</label>
-      <input className="input-estado" type="text" name="estado" value={form.estado} onChange={handleChange} />
+      <label>Estado</label>
+      <input type="text" name="estado" value={form.estado} onChange={handleChange} />
 
-      <label className="label" htmlFor="telefone">Telefone</label>
-      <input className="input-telefone" type="text" name="telefone" value={form.telefone} onChange={handleChange} />
+      <label>Telefone</label>
+      <input type="text" name="telefone" value={form.telefone} onChange={handleChange} />
 
-      <label className="label" htmlFor="biografia">Biografia</label>
-      <textarea className="input-biografia" name="biografia" value={form.biografia} onChange={handleChange}></textarea>
+      <label>Biografia</label>
+      <textarea name="biografia" value={form.biografia} onChange={handleChange} />
 
-      <button className="botao-salvar" type="submit">Salvar</button>
+      <button type="submit">Salvar</button>
+      <button type="button" onClick={onCancelar}>Cancelar</button>
     </form>
   );
 }
