@@ -1,4 +1,3 @@
 # Ignorar dependências e build
 node_modules/
 dist/
-.env
